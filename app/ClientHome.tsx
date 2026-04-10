@@ -32,9 +32,8 @@ const staggerContainer = {
 
 const mobileMenuVariants = {
   closed: { opacity: 0, y: "-100%", scale: 0.95 },
-  open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }
+  open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: "easeInOut" } }
 };
-
 // GNM Roadmap Data
 const gnmRoadmap = [
   { year: "1st Year", title: "Basics & Foundation", desc: "Master the human body with Anatomy, learn Nursing Fundamentals, and practice basic patient care.", icon: BookOpen },
