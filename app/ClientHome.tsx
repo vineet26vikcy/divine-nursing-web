@@ -30,9 +30,14 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
 };
 
-const mobileMenuVariants = {
+const mobileMenuVariants: any = {
   closed: { opacity: 0, y: "-100%", scale: 0.95 },
-  open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: "easeInOut" } }
+  open: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1, 
+    transition: { duration: 0.4, ease: "easeInOut" } 
+  }
 };
 // GNM Roadmap Data
 const gnmRoadmap = [
