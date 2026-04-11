@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, GraduationCap, Activity, FileText, Bell, MapPin, Mail, Phone, ArrowRight, ChevronRight, Trophy, ChevronDown, Menu, X, MessageCircle, Image as ImageIcon, ArrowUpRight, Quote } from "lucide-react";
+import { BookOpen, GraduationCap, Activity, Bell, MapPin, Mail, Phone, ArrowRight, ChevronRight, Trophy, ChevronDown, Menu, X, MessageCircle, Image as ImageIcon, ArrowUpRight, Quote } from "lucide-react";
 
 // --- Helper: Formats file names (e.g. "anatomy-lab-1.jpg" -> "Anatomy Lab 1") ---
 function formatImageName(pathStr: string) {
@@ -42,8 +42,6 @@ const collegeNotices = [
 ];
 
 export default function ClientHome({ labImages = [], galleryImages = [] }: any) {
-  const [rollNumber, setRollNumber] = useState("");
-  const [showResult, setShowResult] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -406,7 +404,6 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
             {/* BSc Nursing */}
             <motion.div variants={fadeInUp} whileHover={{ y: -8 }} className="bg-slate-50 rounded-3xl overflow-hidden shadow-lg border border-slate-200 group flex flex-col">
               <div className="relative h-48 md:h-64 overflow-hidden bg-slate-200">
-                {/* Replaced Unsplash URL with /bsc.png */}
                 <img src="/bsc.png" alt="BSc Nursing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent p-5 md:p-6 flex flex-col justify-end">
                     <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight">B.Sc. Nursing</h3>
@@ -424,7 +421,6 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
             {/* GNM */}
             <motion.div variants={fadeInUp} whileHover={{ y: -8 }} className="bg-slate-50 rounded-3xl overflow-hidden shadow-lg border border-slate-200 group flex flex-col">
               <div className="relative h-48 md:h-64 overflow-hidden bg-slate-200">
-                {/* Replaced Unsplash URL with /gnm.png */}
                 <img src="/gnm.png" alt="GNM Program" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent p-5 md:p-6 flex flex-col justify-end">
                     <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight">GNM Program</h3>
@@ -518,57 +514,6 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
                </button>
             </form>
           </motion.div>
-        </div>
-      </section>
-
-      {/* --- Student Zone (Centered Results Portal) --- */}
-      <section id="student-zone" className="py-10 md:py-24 bg-slate-50 relative overflow-hidden z-20 border-t border-slate-200">
-        <div className="absolute top-10 right-10 w-24 h-24 bg-blue-100 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 left-10 w-32 h-32 bg-indigo-100 rounded-full blur-3xl"></div>
-
-        <div className="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
-            <motion.div initial={{opacity:0,scale:0.98}} whileInView={{opacity:1,scale:1}} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="bg-white rounded-3xl p-6 md:p-10 shadow-xl relative overflow-hidden border border-slate-200">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-
-              <div className="relative z-10 text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
-                <div className="w-full md:w-1/2">
-                    <h3 className="text-2xl md:text-4xl font-black text-slate-900 mb-3 md:mb-4 flex items-center justify-center md:justify-start gap-3 leading-tight">
-                    <FileText className="text-blue-600 h-6 w-6 md:h-8 md:w-8" /> Results Portal
-                    </h3>
-                    <p className="text-xs md:text-base text-slate-600 mb-6 md:mb-8 font-medium leading-relaxed">Enter your enrollment or roll number to fetch your latest results directly from JNRC and Ranchi University portals.</p>
-                </div>
-
-                <div className="w-full md:w-1/2">
-                    {!showResult ? (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4 text-left">
-                        <div>
-                        <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Roll Number</label>
-                        <input type="text" placeholder="e.g. DNC2026001" value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 md:py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-mono font-bold text-sm md:text-base"/>
-                        </div>
-                        <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => setShowResult(true)} className="w-full bg-blue-600 text-white font-bold py-3.5 md:py-4 rounded-xl shadow-md shadow-blue-500/20 hover:bg-blue-700 transition-colors text-sm md:text-lg mt-2">
-                        Check Results
-                        </motion.button>
-                    </motion.div>
-                    ) : (
-                    <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} className="bg-slate-50 rounded-2xl p-5 md:p-6 shadow-lg relative z-10 border border-slate-200 text-left">
-                        <div className="text-center mb-5 md:mb-6">
-                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: "spring" }} className="inline-block bg-green-100 text-green-700 font-bold px-3 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-sm mb-2 md:mb-3 border border-green-200">Passed Successfully</motion.div>
-                        <h4 className="text-slate-900 font-extrabold text-lg md:text-xl tracking-tight leading-tight">{rollNumber || "DNC2026001"}</h4>
-                        <p className="text-xs md:text-sm text-slate-500 font-semibold">B.Sc Nursing - Semester 2</p>
-                        </div>
-                        <div className="space-y-3 mb-6 md:mb-8 text-xs md:text-base">
-                        <div className="flex justify-between items-center border-b border-slate-200 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Anatomy</span><span className="font-bold text-slate-900">85<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
-                        <div className="flex justify-between items-center border-b border-slate-200 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Physiology</span><span className="font-bold text-slate-900">78<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
-                        <div className="flex justify-between items-center border-b border-slate-200 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Nutrition</span><span className="font-bold text-slate-900">92<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
-                        </div>
-                        <button onClick={() => setShowResult(false)} className="w-full bg-white border border-slate-300 text-slate-700 font-bold py-3 md:py-3.5 rounded-xl hover:bg-slate-100 transition-colors text-sm md:text-base">
-                        Check Another
-                        </button>
-                    </motion.div>
-                    )}
-                </div>
-              </div>
-            </motion.div>
         </div>
       </section>
 
