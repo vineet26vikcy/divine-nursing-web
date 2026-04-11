@@ -33,22 +33,6 @@ const mobileMenuVariants: any = {
   open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: "easeInOut" } }
 };
 
-// GNM Roadmap Data
-const gnmRoadmap = [
-  { year: "1st Year", title: "Basics & Foundation", desc: "Master the human body with Anatomy, learn Nursing Fundamentals, and practice basic patient care.", icon: BookOpen },
-  { year: "2nd Year", title: "Hospital Training", desc: "Move to the clinical floor. Learn to administer injections, manage ward duties, and provide direct patient care.", icon: Activity },
-  { year: "3rd Year", title: "Advanced Specialization", desc: "Midwifery (delivery), child care, community health management.", icon: Users },
-  { year: "Final Phase", title: "6-Month Internship", desc: "Transition fully from a student into a skilled healthcare professional.", icon: Rocket }
-];
-
-// BSc Nursing Roadmap Data
-const bscRoadmap = [
-  { year: "1st Year", title: "Core Sciences", desc: "Deep dive into Anatomy, Physiology, Nursing Fundamentals, and rigorous basic patient care training.", icon: BookOpen },
-  { year: "2nd Year", title: "Clinical Start", desc: "Enter Medical-Surgical units. Study Pharmacology and take on active ward duty.", icon: ShieldPlus },
-  { year: "3rd Year", title: "Advanced Care", desc: "Master Child Care, Mental Health (Psychiatry), and Community Health.", icon: HeartPulse },
-  { year: "4th Year", title: "Specialization & Internship", desc: "High-intensity training in ICU, OT, nursing research, and full hospital internship.", icon: Award }
-];
-
 // Latest Notices Data
 const collegeNotices = [
   { title: "B.Sc Nursing 1st Year Exam Schedule Released", date: "Oct 15, 2026", tag: "Exams" },
@@ -173,9 +157,7 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
 
       {/* --- 1. HERO SECTION: BENTO BOX (DARK MODE - Full Width Uncropped Mobile) --- */}
       <section id="welcome" className="relative w-full pt-24 md:pt-28 pb-0 md:pb-12 bg-slate-950 z-0 flex flex-col items-center justify-center min-h-0 md:min-h-[90vh]">
-        
         <div className="w-full max-w-[1600px] mx-auto px-0 md:px-8 flex flex-col lg:flex-row gap-0 md:gap-8 h-full items-stretch">
-          
           <motion.div 
             initial={{ opacity: 0, scale: 0.98, x: -20 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1, ease: "easeOut" }}
             className="w-full lg:w-[75%] relative rounded-none md:rounded-[3rem] overflow-hidden md:shadow-2xl md:border md:border-slate-800 md:min-h-[500px] lg:min-h-[75vh] flex bg-black group"
@@ -312,15 +294,13 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
         </div>
       </section>
 
-      {/* --- NEW: DIRECTOR'S MESSAGE SECTION --- */}
+      {/* --- DIRECTOR'S MESSAGE SECTION --- */}
       <section className="relative py-10 md:py-24 bg-slate-50 overflow-hidden border-b border-slate-200 z-20">
         <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp} className="bg-white rounded-3xl md:rounded-[3rem] p-6 md:p-16 shadow-xl border border-slate-200 relative overflow-hidden flex flex-col md:flex-row items-center md:items-end gap-8 md:gap-12">
             
-            {/* Background decorative elements */}
             <div className="absolute top-0 left-0 w-48 h-48 md:w-64 md:h-64 bg-blue-50 rounded-full blur-3xl -translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
             
-            {/* Text Content */}
             <div className="w-full md:w-2/3 relative z-10 flex flex-col justify-center">
               <Quote className="h-10 w-10 md:h-16 md:w-16 text-blue-200 mb-4 md:mb-6" />
               <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-4 md:mb-6 tracking-tight">Message from the Director</h2>
@@ -335,10 +315,8 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
               </div>
             </div>
 
-            {/* Image (Aligned Bottom Right) */}
             <div className="w-full md:w-1/3 flex justify-end self-end mt-4 md:mt-0 relative z-10">
                <div className="relative inline-block">
-                  {/* Decorative glowing shadow behind image */}
                   <div className="absolute inset-0 bg-blue-600 rounded-full blur-xl opacity-20 translate-y-3 md:translate-y-4"></div>
                   <img src="/director.png" alt="Director of Divine Nursing College" className="relative w-40 h-40 md:w-64 md:h-64 rounded-full object-cover border-4 md:border-8 border-white shadow-2xl z-10" />
                </div>
