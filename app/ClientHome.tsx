@@ -394,7 +394,7 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
         <a href="/gallery" className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 px-6 py-3 md:px-8 md:py-3.5 rounded-full font-bold shadow-sm transition-all text-sm md:text-base">View Full Gallery Directory <ArrowUpRight className="h-4 w-4" /></a>
       </section>
 
-      {/* --- Course Tiles Section --- */}
+      {/* --- Course Tiles Section (Updated with User Images) --- */}
       <section id="courses" className="py-10 md:py-20 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <motion.div className="text-center mb-8 md:mb-16" initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7 }}>
@@ -406,7 +406,8 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
             {/* BSc Nursing */}
             <motion.div variants={fadeInUp} whileHover={{ y: -8 }} className="bg-slate-50 rounded-3xl overflow-hidden shadow-lg border border-slate-200 group flex flex-col">
               <div className="relative h-48 md:h-64 overflow-hidden bg-slate-200">
-                <img src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800" alt="BSc Nursing Lab" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                {/* Replaced Unsplash URL with /bsc.png */}
+                <img src="/bsc.png" alt="BSc Nursing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent p-5 md:p-6 flex flex-col justify-end">
                     <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight">B.Sc. Nursing</h3>
                 </div>
@@ -423,7 +424,8 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
             {/* GNM */}
             <motion.div variants={fadeInUp} whileHover={{ y: -8 }} className="bg-slate-50 rounded-3xl overflow-hidden shadow-lg border border-slate-200 group flex flex-col">
               <div className="relative h-48 md:h-64 overflow-hidden bg-slate-200">
-                <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=800" alt="GNM Practical" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                {/* Replaced Unsplash URL with /gnm.png */}
+                <img src="/gnm.png" alt="GNM Program" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent p-5 md:p-6 flex flex-col justify-end">
                     <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight">GNM Program</h3>
                 </div>
