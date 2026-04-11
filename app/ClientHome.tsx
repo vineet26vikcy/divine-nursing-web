@@ -33,6 +33,22 @@ const mobileMenuVariants: any = {
   open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: "easeInOut" } }
 };
 
+// GNM Roadmap Data
+const gnmRoadmap = [
+  { year: "1st Year", title: "Basics & Foundation", desc: "Master the human body with Anatomy, learn Nursing Fundamentals, and practice basic patient care.", icon: BookOpen },
+  { year: "2nd Year", title: "Hospital Training", desc: "Move to the clinical floor. Learn to administer injections, manage ward duties, and provide direct patient care.", icon: Activity },
+  { year: "3rd Year", title: "Advanced Specialization", desc: "Midwifery (delivery), child care, community health management.", icon: Users },
+  { year: "Final Phase", title: "6-Month Internship", desc: "Transition fully from a student into a skilled healthcare professional.", icon: Rocket }
+];
+
+// BSc Nursing Roadmap Data
+const bscRoadmap = [
+  { year: "1st Year", title: "Core Sciences", desc: "Deep dive into Anatomy, Physiology, Nursing Fundamentals, and rigorous basic patient care training.", icon: BookOpen },
+  { year: "2nd Year", title: "Clinical Start", desc: "Enter Medical-Surgical units. Study Pharmacology and take on active ward duty.", icon: ShieldPlus },
+  { year: "3rd Year", title: "Advanced Care", desc: "Master Child Care, Mental Health (Psychiatry), and Community Health.", icon: HeartPulse },
+  { year: "4th Year", title: "Specialization & Internship", desc: "High-intensity training in ICU, OT, nursing research, and full hospital internship.", icon: Award }
+];
+
 // Latest Notices Data
 const collegeNotices = [
   { title: "B.Sc Nursing 1st Year Exam Schedule Released", date: "Oct 15, 2026", tag: "Exams" },
@@ -179,7 +195,6 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
               <h2 className="text-2xl md:text-3xl font-black text-white mb-6 flex items-center gap-3 tracking-tight shrink-0">
                 <Bell className="text-blue-500" /> Latest Notices
               </h2>
-              
               <div className="relative flex-grow overflow-hidden h-full my-2" style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)' }}>
                 <motion.div className="flex flex-col gap-4 absolute w-full" animate={{ y: ["0%", "-50%"] }} transition={{ duration: 20, ease: "linear", repeat: Infinity }}>
                     {[...collegeNotices, ...collegeNotices].map((notice, i) => (
@@ -193,7 +208,6 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
                     ))}
                 </motion.div>
               </div>
-
               <div className="mt-6 pt-6 border-t border-slate-800 shrink-0">
                 <a href="#apply" className="bg-blue-600 text-white w-full py-4 rounded-xl font-bold shadow-lg shadow-blue-500/20 hover:bg-blue-500 transition-colors text-center flex items-center justify-center gap-2">
                   Apply for Admission <ArrowRight className="h-5 w-5"/>
@@ -202,7 +216,6 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
             </div>
           </motion.div>
         </div>
-        
         <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }} className="mt-4 md:mt-8 mb-4 md:mb-0 bg-slate-800 p-2.5 md:p-3 rounded-full shadow-sm border border-slate-700 text-blue-400 z-10 hidden md:block">
             <ChevronDown className="h-5 w-5 md:h-6 md:w-6" />
         </motion.div>
@@ -297,33 +310,104 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
       {/* --- DIRECTOR'S MESSAGE SECTION --- */}
       <section className="relative py-10 md:py-24 bg-slate-50 overflow-hidden border-b border-slate-200 z-20">
         <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp} className="bg-white rounded-3xl md:rounded-[3rem] p-6 md:p-16 shadow-xl border border-slate-200 relative overflow-hidden flex flex-col md:flex-row items-center md:items-end gap-8 md:gap-12">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp} className="bg-white rounded-3xl md:rounded-[3rem] p-6 md:p-12 lg:p-16 shadow-xl border border-slate-200 relative overflow-hidden flex flex-col md:flex-row items-start md:items-stretch gap-8">
             
             <div className="absolute top-0 left-0 w-48 h-48 md:w-64 md:h-64 bg-blue-50 rounded-full blur-3xl -translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
             
             <div className="w-full md:w-2/3 relative z-10 flex flex-col justify-center">
-              <Quote className="h-10 w-10 md:h-16 md:w-16 text-blue-200 mb-4 md:mb-6" />
+              <Quote className="h-10 w-10 md:h-12 lg:h-16 md:w-12 lg:w-16 text-blue-200 mb-4 md:mb-6" />
               <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-4 md:mb-6 tracking-tight">Message from the Director</h2>
               <div className="space-y-3 md:space-y-4 text-slate-700 font-medium text-sm md:text-lg leading-relaxed">
                 <p>At <strong className="text-slate-900">Divine Nursing College</strong>, excellence is not an aspiration, it is our standard. We take pride in consistently producing toppers who set benchmarks in academic performance and professional competence.</p>
                 <p>Our focus on rigorous training, discipline, and practical exposure ensures that our students don’t just succeed, they lead. We are committed to shaping confident, skilled, and compassionate nursing professionals ready to excel in the healthcare sector.</p>
                 <p className="font-bold text-blue-700">If you aim to be among the best, you are in the right place.</p>
               </div>
-              <div className="mt-6 md:mt-8 pt-6 border-t border-slate-100">
-                <h4 className="text-lg md:text-xl font-black text-slate-900">Director</h4>
-                <p className="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest mt-1">Divine Nursing College</p>
+              
+              <div className="mt-6 md:mt-8 pt-6 border-t border-slate-100 flex flex-row items-center justify-between md:block">
+                <div>
+                  <h4 className="text-xl md:text-2xl font-black text-slate-900">- W. Anthony</h4>
+                  <p className="text-sm md:text-base font-bold text-blue-600 mt-1">Director</p>
+                  <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mt-0.5">Divine Nursing College</p>
+                </div>
+                
+                <div className="md:hidden relative inline-block shrink-0 ml-4">
+                  <div className="absolute inset-0 bg-blue-600 rounded-full blur-lg opacity-20 translate-y-2"></div>
+                  <img src="/director.png" alt="W. Anthony - Director" className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-white shadow-xl z-10" />
+                </div>
               </div>
             </div>
 
-            <div className="w-full md:w-1/3 flex justify-end self-end mt-4 md:mt-0 relative z-10">
+            <div className="hidden md:flex w-full md:w-1/3 justify-end items-end relative z-10">
                <div className="relative inline-block">
-                  <div className="absolute inset-0 bg-blue-600 rounded-full blur-xl opacity-20 translate-y-3 md:translate-y-4"></div>
-                  <img src="/director.png" alt="Director of Divine Nursing College" className="relative w-40 h-40 md:w-64 md:h-64 rounded-full object-cover border-4 md:border-8 border-white shadow-2xl z-10" />
+                  <div className="absolute inset-0 bg-blue-600 rounded-full blur-xl opacity-20 translate-y-4"></div>
+                  <img src="/director.png" alt="W. Anthony - Director" className="relative w-56 h-56 lg:w-72 lg:h-72 rounded-full object-cover border-8 border-white shadow-2xl z-10" />
                </div>
             </div>
 
           </motion.div>
         </div>
+      </section>
+
+      {/* --- 3. DYNAMIC LAB FACILITIES (Moved Up) --- */}
+      <section id="facilities" className="relative py-10 md:py-24 bg-white overflow-hidden border-b border-slate-200 p-4">
+        <div className="relative z-10 max-w-7xl mx-auto px-0 md:px-8">
+          <motion.div initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 1, ease: "easeOut" }} className="max-w-4xl mx-auto text-center mb-10 md:mb-16">
+            <h2 className="text-3xl md:text-7xl font-black text-slate-900 tracking-tight leading-none">Lab Facilities.</h2>
+          </motion.div>
+
+          {/* Desktop Grid Layout with Dynamic Names */}
+          <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1.2 }} className="hidden md:grid w-full mx-auto max-w-6xl grid-cols-2 lg:grid-cols-3 gap-6">
+            {labImages.map((img: string, idx: number) => {
+              const formattedName = formatImageName(img);
+              return (
+                <div key={idx} className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg border border-slate-200 group bg-slate-50">
+                  <img src={img} alt={`Lab Facility ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent p-6 flex flex-col justify-end">
+                      <h4 className="text-white text-xl font-bold leading-tight drop-shadow-md">{formattedName}</h4>
+                  </div>
+                </div>
+              );
+            })}
+          </motion.div>
+
+          {/* Mobile Slider Layout with Dynamic Names */}
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 1 }} className="md:hidden relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl border border-slate-200 bg-slate-50">
+            {isMounted && labImages?.length > 0 ? (
+              <>
+                <AnimatePresence mode="wait">
+                  <motion.img key={labIndex} src={labImages[labIndex]} initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8, ease: "easeInOut" }} className="absolute inset-0 w-full h-full object-cover" />
+                </AnimatePresence>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent p-5 flex flex-col justify-end z-10 pointer-events-none">
+                    <h4 className="text-white text-lg font-bold leading-tight drop-shadow-md pb-4">{formatImageName(labImages[labIndex])}</h4>
+                </div>
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5 z-20">
+                   {labImages.map((_: any, i: number) => (<button key={i} onClick={() => setLabIndex(i)} className={`h-1.5 rounded-full transition-all duration-300 shadow-sm ${i === labIndex ? 'bg-blue-600 w-5' : 'bg-white/70 w-1.5 hover:bg-white'}`} />))}
+                </div>
+              </>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-slate-400 flex-col gap-3"><ImageIcon className="h-10 w-10 opacity-50" /><p className="font-semibold text-sm">No images found</p></div>
+            )}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* --- PREVIEW GALLERY SECTION (Moved Up) --- */}
+      <section className="relative py-10 md:py-24 bg-slate-50 overflow-hidden border-b border-slate-200 p-4 text-center flex flex-col items-center">
+        <motion.div initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 1 }} className="mb-8 md:mb-16">
+          <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-3 md:mb-6 leading-none">Campus Gallery</h2>
+          <p className="text-sm md:text-xl text-slate-600 font-medium px-4 leading-relaxed">A glimpse into life at Divine Nursing College.</p>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative w-full max-w-4xl aspect-[4/3] md:aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-slate-200 bg-white group mb-6 md:mb-8">
+          {isMounted && galleryImages?.length > 0 ? (
+            <>
+              <AnimatePresence mode="wait"><motion.img key={galleryIndex} src={galleryImages[galleryIndex]} initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className="absolute inset-0 w-full h-full object-cover" /></AnimatePresence>
+              <div className="absolute bottom-4 md:bottom-6 left-0 right-0 flex justify-center gap-1.5 md:gap-2 z-10">
+                 {galleryImages.map((_: any, i: number) => (<button key={i} onClick={() => setGalleryIndex(i)} className={`h-1.5 md:h-2 rounded-full transition-all duration-300 shadow-sm ${i === galleryIndex ? 'bg-blue-600 w-5 md:w-6' : 'bg-white/70 w-1.5 md:w-2'}`} />))}
+              </div>
+            </>
+          ) : ( <div className="w-full h-full flex items-center justify-center text-slate-400"><ImageIcon className="h-10 w-10 md:h-12 md:w-12 opacity-50" /></div> )}
+        </motion.div>
+        <a href="/gallery" className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 px-6 py-3 md:px-8 md:py-3.5 rounded-full font-bold shadow-sm transition-all text-sm md:text-base">View Full Gallery Directory <ArrowUpRight className="h-4 w-4" /></a>
       </section>
 
       {/* --- Course Tiles Section --- */}
@@ -372,8 +456,48 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
         </div>
       </section>
 
+      {/* --- DUAL-TRACK INTERACTIVE ROADMAP --- */}
+      <section id="roadmap" className="py-10 md:py-24 bg-slate-50 relative overflow-hidden z-20 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-3 md:px-8 relative z-10 text-center">
+          <motion.div initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} viewport={{ once: true, amount: 0.8 }} className="mb-8 md:mb-16">
+            <span className="text-blue-700 font-bold uppercase tracking-widest text-[10px] md:text-sm mb-2 inline-block border border-blue-200 bg-blue-50 px-3 md:px-4 py-1 rounded-full">Your Educational Journey</span>
+            <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-2 leading-tight">Choose Your Path</h2>
+          </motion.div>
+          <div className="grid grid-cols-2 gap-3 md:gap-12 lg:gap-16 items-start text-left">
+            {/* BSc Column */}
+            <div className="relative bg-white border border-slate-200 p-3 md:p-8 rounded-2xl md:rounded-3xl shadow-lg">
+              <h3 className="text-[13px] md:text-4xl font-black text-blue-700 mb-6 flex flex-col xl:flex-row items-start xl:items-center gap-0.5 md:gap-3">B.Sc. Nursing <span className="text-slate-500 text-[10px] md:text-xl font-bold">(4 Years)</span></h3>
+              <div className="absolute left-[16px] md:left-[34px] top-[60px] md:top-[100px] w-0.5 md:w-1 h-[calc(100%-80px)] bg-slate-200 rounded-full z-0" />
+              <motion.div initial={{ height: "0%" }} whileInView={{ height: "calc(100%-80px)" }} transition={{ duration: 3 }} className="absolute left-[16px] md:left-[34px] top-[60px] md:top-[100px] w-0.5 md:w-1 bg-blue-400 rounded-full z-0 origin-top" />
+              <div className="space-y-6 md:space-y-10 relative z-10">
+                {bscRoadmap.map((step, index) => (
+                  <div key={index} className="relative flex items-center w-full pl-6 md:pl-12">
+                    <div className="absolute left-[-6px] md:left-[5px] w-3.5 h-3.5 md:w-6 md:h-6 rounded-full border-4 border-blue-400 shadow-sm z-20 bg-slate-50" />
+                    <div className="bg-slate-50 p-3 md:p-6 rounded-xl border border-slate-200 w-full"><h4 className="text-xs md:text-xl font-bold text-slate-900 leading-snug">{step.title}</h4><p className="text-slate-600 text-[10px] md:text-sm leading-relaxed line-clamp-3">{step.desc}</p></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* GNM Column */}
+            <div className="relative bg-white border border-slate-200 p-3 md:p-8 rounded-2xl md:rounded-3xl shadow-lg">
+              <h3 className="text-[13px] md:text-4xl font-black text-amber-600 mb-6 flex flex-col xl:flex-row items-start xl:items-center gap-0.5 md:gap-3">GNM Program <span className="text-slate-500 text-[10px] md:text-xl font-bold">(3 Years)</span></h3>
+              <div className="absolute left-[16px] md:left-[34px] top-[60px] md:top-[100px] w-0.5 md:w-1 h-[calc(100%-80px)] bg-slate-200 rounded-full z-0" />
+              <motion.div initial={{ height: "0%" }} whileInView={{ height: "calc(100%-80px)" }} transition={{ duration: 3 }} className="absolute left-[16px] md:left-[34px] top-[60px] md:top-[100px] w-0.5 md:w-1 bg-amber-400 rounded-full z-0 origin-top" />
+              <div className="space-y-6 md:space-y-10 relative z-10">
+                {gnmRoadmap.map((step, index) => (
+                  <div key={index} className="relative flex items-center w-full pl-6 md:pl-12">
+                    <div className="absolute left-[-6px] md:left-[5px] w-3.5 h-3.5 md:w-6 md:h-6 rounded-full border-4 border-amber-400 shadow-sm z-20 bg-slate-50" />
+                    <div className="bg-slate-50 p-3 md:p-6 rounded-xl border border-slate-200 w-full"><h4 className="text-xs md:text-xl font-bold text-slate-900 leading-snug">{step.title}</h4><p className="text-slate-600 text-[10px] md:text-sm leading-relaxed line-clamp-3">{step.desc}</p></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- Affiliations Tiles Section --- */}
-      <section id="affiliations" className="py-10 md:py-24 bg-slate-50 relative z-20 border-t border-slate-200">
+      <section id="affiliations" className="py-10 md:py-24 bg-white relative z-20 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <motion.div className="text-center mb-8 md:mb-16" initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7 }}>
             <span className="text-blue-700 font-bold uppercase tracking-widest text-[10px] md:text-sm mb-2 md:mb-3 inline-block border border-blue-200 bg-blue-50 px-3 md:px-4 py-1 rounded-full">Accreditation</span>
@@ -382,24 +506,24 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
           </motion.div>
 
           <motion.div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={staggerContainer}>
-            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="bg-slate-50 p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
+            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-slate-50 border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="bg-white p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
                 <BookOpen className="h-7 w-7 md:h-9 md:w-9 text-blue-700" />
               </div>
               <h4 className="text-lg md:text-xl font-bold text-slate-900 mb-1">INC Approved</h4>
               <p className="text-xs md:text-sm text-slate-600 font-semibold">Indian Nursing Council Registered</p>
             </motion.div>
 
-            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="bg-slate-50 p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
+            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-slate-50 border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="bg-white p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
                 <Activity className="h-7 w-7 md:h-9 md:w-9 text-blue-700" />
               </div>
               <h4 className="text-lg md:text-xl font-bold text-slate-900 mb-1">JNRC Affiliated</h4>
               <p className="text-xs md:text-sm text-slate-600 font-semibold">Jharkhand Nursing Council Approved</p>
             </motion.div>
 
-            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="bg-slate-50 p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
+            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-slate-50 border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="bg-white p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
                 <GraduationCap className="h-7 w-7 md:h-9 md:w-9 text-blue-700" />
               </div>
               <h4 className="text-lg md:text-xl font-bold text-slate-900 mb-1">Ranchi University</h4>
@@ -409,97 +533,35 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
         </div>
       </section>
 
-      {/* --- 3. DYNAMIC LAB FACILITIES --- */}
-      <section id="facilities" className="relative py-10 md:py-24 bg-white overflow-hidden border-t border-b border-slate-200 p-4">
-        <div className="relative z-10 max-w-7xl mx-auto px-0 md:px-8">
-          <motion.div initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 1, ease: "easeOut" }} className="max-w-4xl mx-auto text-center mb-10 md:mb-16">
-            <h2 className="text-3xl md:text-7xl font-black text-slate-900 tracking-tight leading-none">Lab Facilities.</h2>
-          </motion.div>
-
-          {/* Desktop Grid Layout with Dynamic Names */}
-          <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1.2 }} className="hidden md:grid w-full mx-auto max-w-6xl grid-cols-2 lg:grid-cols-3 gap-6">
-            {labImages.map((img: string, idx: number) => {
-              const formattedName = formatImageName(img);
-              return (
-                <div key={idx} className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg border border-slate-200 group bg-white">
-                  <img src={img} alt={`Lab Facility ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent p-6 flex flex-col justify-end">
-                      <h4 className="text-white text-xl font-bold leading-tight drop-shadow-md">{formattedName}</h4>
-                  </div>
-                </div>
-              );
-            })}
-          </motion.div>
-
-          {/* Mobile Slider Layout with Dynamic Names */}
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 1 }} className="md:hidden relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl border border-slate-200 bg-slate-100">
-            {isMounted && labImages?.length > 0 ? (
-              <>
-                <AnimatePresence mode="wait">
-                  <motion.img key={labIndex} src={labImages[labIndex]} initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8, ease: "easeInOut" }} className="absolute inset-0 w-full h-full object-cover" />
-                </AnimatePresence>
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent p-5 flex flex-col justify-end z-10 pointer-events-none">
-                    <h4 className="text-white text-lg font-bold leading-tight drop-shadow-md pb-4">{formatImageName(labImages[labIndex])}</h4>
-                </div>
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5 z-20">
-                   {labImages.map((_: any, i: number) => (<button key={i} onClick={() => setLabIndex(i)} className={`h-1.5 rounded-full transition-all duration-300 shadow-sm ${i === labIndex ? 'bg-blue-600 w-5' : 'bg-white/70 w-1.5 hover:bg-white'}`} />))}
-                </div>
-              </>
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-slate-400 flex-col gap-3"><ImageIcon className="h-10 w-10 opacity-50" /><p className="font-semibold text-sm">No images found</p></div>
-            )}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* --- PREVIEW GALLERY SECTION --- */}
-      <section className="relative py-10 md:py-24 bg-slate-50 overflow-hidden border-b border-slate-200 p-4 text-center flex flex-col items-center">
-        <motion.div initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 1 }} className="mb-8 md:mb-16">
-          <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-3 md:mb-6 leading-none">Campus Gallery</h2>
-          <p className="text-sm md:text-xl text-slate-600 font-medium px-4 leading-relaxed">A glimpse into life at Divine Nursing College.</p>
-        </motion.div>
-        <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative w-full max-w-4xl aspect-[4/3] md:aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-slate-200 bg-white group mb-6 md:mb-8">
-          {isMounted && galleryImages?.length > 0 ? (
-            <>
-              <AnimatePresence mode="wait"><motion.img key={galleryIndex} src={galleryImages[galleryIndex]} initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className="absolute inset-0 w-full h-full object-cover" /></AnimatePresence>
-              <div className="absolute bottom-4 md:bottom-6 left-0 right-0 flex justify-center gap-1.5 md:gap-2 z-10">
-                 {galleryImages.map((_: any, i: number) => (<button key={i} onClick={() => setGalleryIndex(i)} className={`h-1.5 md:h-2 rounded-full transition-all duration-300 shadow-sm ${i === galleryIndex ? 'bg-blue-600 w-5 md:w-6' : 'bg-white/70 w-1.5 md:w-2'}`} />))}
-              </div>
-            </>
-          ) : ( <div className="w-full h-full flex items-center justify-center text-slate-400"><ImageIcon className="h-10 w-10 md:h-12 md:w-12 opacity-50" /></div> )}
-        </motion.div>
-        <a href="/gallery" className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 px-6 py-3 md:px-8 md:py-3.5 rounded-full font-bold shadow-sm transition-all text-sm md:text-base">View Full Gallery Directory <ArrowUpRight className="h-4 w-4" /></a>
-      </section>
-
       {/* --- APPLY NOW FORM SECTION --- */}
-      <section id="apply" className="py-10 md:py-24 bg-white relative z-20 p-4 md:p-0 border-t border-slate-200">
+      <section id="apply" className="py-10 md:py-24 bg-slate-50 relative z-20 p-4 md:p-0 border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-0 md:px-8">
           <motion.div className="text-center mb-8 md:mb-16" initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7 }}>
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-3 md:mb-4 tracking-tight leading-none">Apply for Admission</h2>
             <p className="text-sm md:text-xl text-slate-600 font-medium leading-relaxed">Fill out the form below and our admissions team will contact you.</p>
           </motion.div>
 
-          <motion.div initial={{opacity:0,scale:0.98}} whileInView={{opacity:1,scale:1}} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="bg-slate-50 border border-slate-200 rounded-3xl p-6 md:p-12 shadow-lg relative overflow-hidden">
+          <motion.div initial={{opacity:0,scale:0.98}} whileInView={{opacity:1,scale:1}} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="bg-white border border-slate-200 rounded-3xl p-6 md:p-12 shadow-lg relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
             
             <form className="space-y-4 md:space-y-6 relative z-10" onSubmit={(e) => e.preventDefault()}>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                  <div>
                    <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Full Name</label>
-                   <input type="text" className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="Your full name" />
+                   <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="Your full name" />
                  </div>
                  <div>
                    <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Phone Number</label>
-                   <input type="tel" className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="+91 98765 43210" />
+                   <input type="tel" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="+91 98765 43210" />
                  </div>
                </div>
                <div>
                  <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Email Address</label>
-                 <input type="email" className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="your.email@example.com" />
+                 <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="your.email@example.com" />
                </div>
                <div>
                  <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Select Program</label>
-                 <select className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-700 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold">
+                 <select className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-700 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold">
                    <option value="">Choose a course...</option>
                    <option value="bsc">B.Sc. Nursing (4 Years)</option>
                    <option value="gnm">GNM Program (3 Years)</option>
@@ -514,12 +576,12 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
       </section>
 
       {/* --- Student Zone (Centered Results Portal) --- */}
-      <section id="student-zone" className="py-10 md:py-24 bg-slate-50 relative overflow-hidden z-20 border-t border-slate-200">
+      <section id="student-zone" className="py-10 md:py-24 bg-white relative overflow-hidden z-20 border-t border-slate-200">
         <div className="absolute top-10 right-10 w-24 h-24 bg-blue-100 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 left-10 w-32 h-32 bg-indigo-100 rounded-full blur-3xl"></div>
 
         <div className="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
-            <motion.div initial={{opacity:0,scale:0.98}} whileInView={{opacity:1,scale:1}} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="bg-white rounded-3xl p-6 md:p-10 shadow-xl relative overflow-hidden border border-slate-200">
+            <motion.div initial={{opacity:0,scale:0.98}} whileInView={{opacity:1,scale:1}} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="bg-slate-50 rounded-3xl p-6 md:p-10 shadow-xl relative overflow-hidden border border-slate-200">
               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
 
               <div className="relative z-10 text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
@@ -535,25 +597,25 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4 text-left">
                         <div>
                         <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Roll Number</label>
-                        <input type="text" placeholder="e.g. DNC2026001" value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 md:py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-mono font-bold text-sm md:text-base"/>
+                        <input type="text" placeholder="e.g. DNC2026001" value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 md:py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-mono font-bold text-sm md:text-base"/>
                         </div>
                         <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => setShowResult(true)} className="w-full bg-blue-600 text-white font-bold py-3.5 md:py-4 rounded-xl shadow-md shadow-blue-500/20 hover:bg-blue-700 transition-colors text-sm md:text-lg mt-2">
                         Check Results
                         </motion.button>
                     </motion.div>
                     ) : (
-                    <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} className="bg-slate-50 rounded-2xl p-5 md:p-6 shadow-lg relative z-10 border border-slate-200 text-left">
+                    <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} className="bg-white rounded-2xl p-5 md:p-6 shadow-lg relative z-10 border border-slate-200 text-left">
                         <div className="text-center mb-5 md:mb-6">
                         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: "spring" }} className="inline-block bg-green-100 text-green-700 font-bold px-3 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-sm mb-2 md:mb-3 border border-green-200">Passed Successfully</motion.div>
                         <h4 className="text-slate-900 font-extrabold text-lg md:text-xl tracking-tight leading-tight">{rollNumber || "DNC2026001"}</h4>
                         <p className="text-xs md:text-sm text-slate-500 font-semibold">B.Sc Nursing - Semester 2</p>
                         </div>
                         <div className="space-y-3 mb-6 md:mb-8 text-xs md:text-base">
-                        <div className="flex justify-between items-center border-b border-slate-200 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Anatomy</span><span className="font-bold text-slate-900">85<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
-                        <div className="flex justify-between items-center border-b border-slate-200 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Physiology</span><span className="font-bold text-slate-900">78<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
-                        <div className="flex justify-between items-center border-b border-slate-200 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Nutrition</span><span className="font-bold text-slate-900">92<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
+                        <div className="flex justify-between items-center border-b border-slate-100 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Anatomy</span><span className="font-bold text-slate-900">85<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
+                        <div className="flex justify-between items-center border-b border-slate-100 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Physiology</span><span className="font-bold text-slate-900">78<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
+                        <div className="flex justify-between items-center border-b border-slate-100 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Nutrition</span><span className="font-bold text-slate-900">92<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
                         </div>
-                        <button onClick={() => setShowResult(false)} className="w-full bg-white border border-slate-300 text-slate-700 font-bold py-3 md:py-3.5 rounded-xl hover:bg-slate-100 transition-colors text-sm md:text-base">
+                        <button onClick={() => setShowResult(false)} className="w-full bg-slate-100 border border-slate-200 text-slate-700 font-bold py-3 md:py-3.5 rounded-xl hover:bg-slate-200 transition-colors text-sm md:text-base">
                         Check Another
                         </button>
                     </motion.div>
