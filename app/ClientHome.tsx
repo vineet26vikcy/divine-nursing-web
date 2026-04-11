@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, GraduationCap, Activity, FileText, Bell, MapPin, Mail, Phone, ArrowRight, ChevronRight, Trophy, ChevronDown, Menu, X, MessageCircle, Image as ImageIcon, ArrowUpRight } from "lucide-react";
+import { BookOpen, GraduationCap, Activity, FileText, Bell, MapPin, Mail, Phone, ArrowRight, ChevronRight, Trophy, ChevronDown, Menu, X, MessageCircle, Image as ImageIcon, ArrowUpRight, Quote } from "lucide-react";
 
 // --- Helper: Formats file names (e.g. "anatomy-lab-1.jpg" -> "Anatomy Lab 1") ---
 function formatImageName(pathStr: string) {
@@ -32,6 +32,22 @@ const mobileMenuVariants: any = {
   closed: { opacity: 0, y: "-100%", scale: 0.95 },
   open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: "easeInOut" } }
 };
+
+// GNM Roadmap Data
+const gnmRoadmap = [
+  { year: "1st Year", title: "Basics & Foundation", desc: "Master the human body with Anatomy, learn Nursing Fundamentals, and practice basic patient care.", icon: BookOpen },
+  { year: "2nd Year", title: "Hospital Training", desc: "Move to the clinical floor. Learn to administer injections, manage ward duties, and provide direct patient care.", icon: Activity },
+  { year: "3rd Year", title: "Advanced Specialization", desc: "Midwifery (delivery), child care, community health management.", icon: Users },
+  { year: "Final Phase", title: "6-Month Internship", desc: "Transition fully from a student into a skilled healthcare professional.", icon: Rocket }
+];
+
+// BSc Nursing Roadmap Data
+const bscRoadmap = [
+  { year: "1st Year", title: "Core Sciences", desc: "Deep dive into Anatomy, Physiology, Nursing Fundamentals, and rigorous basic patient care training.", icon: BookOpen },
+  { year: "2nd Year", title: "Clinical Start", desc: "Enter Medical-Surgical units. Study Pharmacology and take on active ward duty.", icon: ShieldPlus },
+  { year: "3rd Year", title: "Advanced Care", desc: "Master Child Care, Mental Health (Psychiatry), and Community Health.", icon: HeartPulse },
+  { year: "4th Year", title: "Specialization & Internship", desc: "High-intensity training in ICU, OT, nursing research, and full hospital internship.", icon: Award }
+];
 
 // Latest Notices Data
 const collegeNotices = [
@@ -296,8 +312,44 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
         </div>
       </section>
 
+      {/* --- NEW: DIRECTOR'S MESSAGE SECTION --- */}
+      <section className="relative py-10 md:py-24 bg-slate-50 overflow-hidden border-b border-slate-200 z-20">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp} className="bg-white rounded-3xl md:rounded-[3rem] p-6 md:p-16 shadow-xl border border-slate-200 relative overflow-hidden flex flex-col md:flex-row items-center md:items-end gap-8 md:gap-12">
+            
+            {/* Background decorative elements */}
+            <div className="absolute top-0 left-0 w-48 h-48 md:w-64 md:h-64 bg-blue-50 rounded-full blur-3xl -translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
+            
+            {/* Text Content */}
+            <div className="w-full md:w-2/3 relative z-10 flex flex-col justify-center">
+              <Quote className="h-10 w-10 md:h-16 md:w-16 text-blue-200 mb-4 md:mb-6" />
+              <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-4 md:mb-6 tracking-tight">Message from the Director</h2>
+              <div className="space-y-3 md:space-y-4 text-slate-700 font-medium text-sm md:text-lg leading-relaxed">
+                <p>At <strong className="text-slate-900">Divine Nursing College</strong>, excellence is not an aspiration, it is our standard. We take pride in consistently producing toppers who set benchmarks in academic performance and professional competence.</p>
+                <p>Our focus on rigorous training, discipline, and practical exposure ensures that our students don’t just succeed, they lead. We are committed to shaping confident, skilled, and compassionate nursing professionals ready to excel in the healthcare sector.</p>
+                <p className="font-bold text-blue-700">If you aim to be among the best, you are in the right place.</p>
+              </div>
+              <div className="mt-6 md:mt-8 pt-6 border-t border-slate-100">
+                <h4 className="text-lg md:text-xl font-black text-slate-900">Director</h4>
+                <p className="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest mt-1">Divine Nursing College</p>
+              </div>
+            </div>
+
+            {/* Image (Aligned Bottom Right) */}
+            <div className="w-full md:w-1/3 flex justify-end self-end mt-4 md:mt-0 relative z-10">
+               <div className="relative inline-block">
+                  {/* Decorative glowing shadow behind image */}
+                  <div className="absolute inset-0 bg-blue-600 rounded-full blur-xl opacity-20 translate-y-3 md:translate-y-4"></div>
+                  <img src="/director.png" alt="Director of Divine Nursing College" className="relative w-40 h-40 md:w-64 md:h-64 rounded-full object-cover border-4 md:border-8 border-white shadow-2xl z-10" />
+               </div>
+            </div>
+
+          </motion.div>
+        </div>
+      </section>
+
       {/* --- Course Tiles Section --- */}
-      <section id="courses" className="py-10 md:py-20 bg-slate-50 relative z-20">
+      <section id="courses" className="py-10 md:py-20 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <motion.div className="text-center mb-8 md:mb-16" initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7 }}>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-3 md:mb-4 leading-none">Our Academic Programs</h2>
@@ -306,7 +358,7 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
 
           <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={staggerContainer}>
             {/* BSc Nursing */}
-            <motion.div variants={fadeInUp} whileHover={{ y: -8 }} className="bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200 group flex flex-col">
+            <motion.div variants={fadeInUp} whileHover={{ y: -8 }} className="bg-slate-50 rounded-3xl overflow-hidden shadow-lg border border-slate-200 group flex flex-col">
               <div className="relative h-48 md:h-64 overflow-hidden bg-slate-200">
                 <img src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800" alt="BSc Nursing Lab" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent p-5 md:p-6 flex flex-col justify-end">
@@ -315,7 +367,7 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
               </div>
               <div className="p-5 md:p-8 flex-grow flex flex-col justify-between">
                 <p className="text-sm md:text-base text-slate-700 mb-6 leading-relaxed font-semibold">A 4-year degree program focusing on building rigorous theoretical and practical foundations in nursing.</p>
-                <ul className="space-y-2 md:space-y-3 font-bold text-xs md:text-sm text-slate-800 border-t border-slate-100 pt-5 md:pt-6">
+                <ul className="space-y-2 md:space-y-3 font-bold text-xs md:text-sm text-slate-800 border-t border-slate-200 pt-5 md:pt-6">
                   <li className="flex items-center gap-2"><ChevronRight className="h-4 w-4 md:h-5 md:w-5 text-blue-600"/> Duration: 4 Years</li>
                   <li className="flex items-center gap-2"><ChevronRight className="h-4 w-4 md:h-5 md:w-5 text-blue-600"/> Eligibility: 10+2 Science (PCB)</li>
                 </ul>
@@ -323,7 +375,7 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
             </motion.div>
 
             {/* GNM */}
-            <motion.div variants={fadeInUp} whileHover={{ y: -8 }} className="bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200 group flex flex-col">
+            <motion.div variants={fadeInUp} whileHover={{ y: -8 }} className="bg-slate-50 rounded-3xl overflow-hidden shadow-lg border border-slate-200 group flex flex-col">
               <div className="relative h-48 md:h-64 overflow-hidden bg-slate-200">
                 <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=800" alt="GNM Practical" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent p-5 md:p-6 flex flex-col justify-end">
@@ -332,7 +384,7 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
               </div>
               <div className="p-5 md:p-8 flex-grow flex flex-col justify-between">
                 <p className="text-sm md:text-base text-slate-700 mb-6 leading-relaxed font-semibold">A 3-year diploma program preparing critical members of the healthcare team.</p>
-                <ul className="space-y-2 md:space-y-3 font-bold text-xs md:text-sm text-slate-800 border-t border-slate-100 pt-5 md:pt-6">
+                <ul className="space-y-2 md:space-y-3 font-bold text-xs md:text-sm text-slate-800 border-t border-slate-200 pt-5 md:pt-6">
                   <li className="flex items-center gap-2"><ChevronRight className="h-4 w-4 md:h-5 md:w-5 text-amber-500"/> Duration: 3 Years</li>
                   <li className="flex items-center gap-2"><ChevronRight className="h-4 w-4 md:h-5 md:w-5 text-amber-500"/> Eligibility: 10+2 (Any Stream)</li>
                 </ul>
@@ -343,7 +395,7 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
       </section>
 
       {/* --- Affiliations Tiles Section --- */}
-      <section id="affiliations" className="py-10 md:py-24 bg-white relative z-20 border-t border-slate-200">
+      <section id="affiliations" className="py-10 md:py-24 bg-slate-50 relative z-20 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <motion.div className="text-center mb-8 md:mb-16" initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7 }}>
             <span className="text-blue-700 font-bold uppercase tracking-widest text-[10px] md:text-sm mb-2 md:mb-3 inline-block border border-blue-200 bg-blue-50 px-3 md:px-4 py-1 rounded-full">Accreditation</span>
@@ -352,24 +404,24 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
           </motion.div>
 
           <motion.div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={staggerContainer}>
-            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-slate-50 border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="bg-white p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
+            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="bg-slate-50 p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
                 <BookOpen className="h-7 w-7 md:h-9 md:w-9 text-blue-700" />
               </div>
               <h4 className="text-lg md:text-xl font-bold text-slate-900 mb-1">INC Approved</h4>
               <p className="text-xs md:text-sm text-slate-600 font-semibold">Indian Nursing Council Registered</p>
             </motion.div>
 
-            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-slate-50 border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="bg-white p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
+            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="bg-slate-50 p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
                 <Activity className="h-7 w-7 md:h-9 md:w-9 text-blue-700" />
               </div>
               <h4 className="text-lg md:text-xl font-bold text-slate-900 mb-1">JNRC Affiliated</h4>
               <p className="text-xs md:text-sm text-slate-600 font-semibold">Jharkhand Nursing Council Approved</p>
             </motion.div>
 
-            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-slate-50 border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="bg-white p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
+            <motion.div variants={fadeInUp} whileHover={{ y: -6 }} className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl text-center flex flex-col items-center shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="bg-slate-50 p-3 rounded-full mb-4 border border-slate-100 shadow-sm flex items-center justify-center">
                 <GraduationCap className="h-7 w-7 md:h-9 md:w-9 text-blue-700" />
               </div>
               <h4 className="text-lg md:text-xl font-bold text-slate-900 mb-1">Ranchi University</h4>
@@ -380,7 +432,7 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
       </section>
 
       {/* --- 3. DYNAMIC LAB FACILITIES --- */}
-      <section id="facilities" className="relative py-10 md:py-24 bg-slate-50 overflow-hidden border-t border-b border-slate-200 p-4">
+      <section id="facilities" className="relative py-10 md:py-24 bg-white overflow-hidden border-t border-b border-slate-200 p-4">
         <div className="relative z-10 max-w-7xl mx-auto px-0 md:px-8">
           <motion.div initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 1, ease: "easeOut" }} className="max-w-4xl mx-auto text-center mb-10 md:mb-16">
             <h2 className="text-3xl md:text-7xl font-black text-slate-900 tracking-tight leading-none">Lab Facilities.</h2>
@@ -423,12 +475,12 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
       </section>
 
       {/* --- PREVIEW GALLERY SECTION --- */}
-      <section className="relative py-10 md:py-24 bg-white overflow-hidden border-b border-slate-200 p-4 text-center flex flex-col items-center">
+      <section className="relative py-10 md:py-24 bg-slate-50 overflow-hidden border-b border-slate-200 p-4 text-center flex flex-col items-center">
         <motion.div initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 1 }} className="mb-8 md:mb-16">
           <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-3 md:mb-6 leading-none">Campus Gallery</h2>
           <p className="text-sm md:text-xl text-slate-600 font-medium px-4 leading-relaxed">A glimpse into life at Divine Nursing College.</p>
         </motion.div>
-        <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative w-full max-w-4xl aspect-[4/3] md:aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-slate-200 bg-slate-100 group mb-6 md:mb-8">
+        <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative w-full max-w-4xl aspect-[4/3] md:aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-slate-200 bg-white group mb-6 md:mb-8">
           {isMounted && galleryImages?.length > 0 ? (
             <>
               <AnimatePresence mode="wait"><motion.img key={galleryIndex} src={galleryImages[galleryIndex]} initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className="absolute inset-0 w-full h-full object-cover" /></AnimatePresence>
@@ -438,38 +490,38 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
             </>
           ) : ( <div className="w-full h-full flex items-center justify-center text-slate-400"><ImageIcon className="h-10 w-10 md:h-12 md:w-12 opacity-50" /></div> )}
         </motion.div>
-        <a href="/gallery" className="inline-flex items-center gap-2 bg-slate-50 hover:bg-slate-100 text-slate-800 border border-slate-300 px-6 py-3 md:px-8 md:py-3.5 rounded-full font-bold shadow-sm transition-all text-sm md:text-base">View Full Gallery Directory <ArrowUpRight className="h-4 w-4" /></a>
+        <a href="/gallery" className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 px-6 py-3 md:px-8 md:py-3.5 rounded-full font-bold shadow-sm transition-all text-sm md:text-base">View Full Gallery Directory <ArrowUpRight className="h-4 w-4" /></a>
       </section>
 
       {/* --- APPLY NOW FORM SECTION --- */}
-      <section id="apply" className="py-10 md:py-24 bg-slate-50 relative z-20 p-4 md:p-0 border-t border-slate-200">
+      <section id="apply" className="py-10 md:py-24 bg-white relative z-20 p-4 md:p-0 border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-0 md:px-8">
           <motion.div className="text-center mb-8 md:mb-16" initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.7 }}>
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-3 md:mb-4 tracking-tight leading-none">Apply for Admission</h2>
             <p className="text-sm md:text-xl text-slate-600 font-medium leading-relaxed">Fill out the form below and our admissions team will contact you.</p>
           </motion.div>
 
-          <motion.div initial={{opacity:0,scale:0.98}} whileInView={{opacity:1,scale:1}} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="bg-white border border-slate-200 rounded-3xl p-6 md:p-12 shadow-lg relative overflow-hidden">
+          <motion.div initial={{opacity:0,scale:0.98}} whileInView={{opacity:1,scale:1}} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="bg-slate-50 border border-slate-200 rounded-3xl p-6 md:p-12 shadow-lg relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
             
             <form className="space-y-4 md:space-y-6 relative z-10" onSubmit={(e) => e.preventDefault()}>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                  <div>
                    <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Full Name</label>
-                   <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="Your full name" />
+                   <input type="text" className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="Your full name" />
                  </div>
                  <div>
                    <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Phone Number</label>
-                   <input type="tel" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="+91 98765 43210" />
+                   <input type="tel" className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="+91 98765 43210" />
                  </div>
                </div>
                <div>
                  <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Email Address</label>
-                 <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="your.email@example.com" />
+                 <input type="email" className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold placeholder-slate-400" placeholder="your.email@example.com" />
                </div>
                <div>
                  <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Select Program</label>
-                 <select className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-700 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold">
+                 <select className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 md:py-4 text-slate-700 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold">
                    <option value="">Choose a course...</option>
                    <option value="bsc">B.Sc. Nursing (4 Years)</option>
                    <option value="gnm">GNM Program (3 Years)</option>
@@ -484,12 +536,12 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
       </section>
 
       {/* --- Student Zone (Centered Results Portal) --- */}
-      <section id="student-zone" className="py-10 md:py-24 bg-white relative overflow-hidden z-20 border-t border-slate-200">
+      <section id="student-zone" className="py-10 md:py-24 bg-slate-50 relative overflow-hidden z-20 border-t border-slate-200">
         <div className="absolute top-10 right-10 w-24 h-24 bg-blue-100 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 left-10 w-32 h-32 bg-indigo-100 rounded-full blur-3xl"></div>
 
         <div className="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
-            <motion.div initial={{opacity:0,scale:0.98}} whileInView={{opacity:1,scale:1}} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="bg-slate-50 rounded-3xl p-6 md:p-10 shadow-xl relative overflow-hidden border border-slate-200">
+            <motion.div initial={{opacity:0,scale:0.98}} whileInView={{opacity:1,scale:1}} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="bg-white rounded-3xl p-6 md:p-10 shadow-xl relative overflow-hidden border border-slate-200">
               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
 
               <div className="relative z-10 text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
@@ -505,25 +557,25 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4 text-left">
                         <div>
                         <label className="block text-xs md:text-sm font-bold text-slate-700 mb-2">Roll Number</label>
-                        <input type="text" placeholder="e.g. DNC2026001" value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 md:py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-mono font-bold text-sm md:text-base"/>
+                        <input type="text" placeholder="e.g. DNC2026001" value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 md:py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-mono font-bold text-sm md:text-base"/>
                         </div>
                         <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => setShowResult(true)} className="w-full bg-blue-600 text-white font-bold py-3.5 md:py-4 rounded-xl shadow-md shadow-blue-500/20 hover:bg-blue-700 transition-colors text-sm md:text-lg mt-2">
                         Check Results
                         </motion.button>
                     </motion.div>
                     ) : (
-                    <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} className="bg-white rounded-2xl p-5 md:p-6 shadow-lg relative z-10 border border-slate-200 text-left">
+                    <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} className="bg-slate-50 rounded-2xl p-5 md:p-6 shadow-lg relative z-10 border border-slate-200 text-left">
                         <div className="text-center mb-5 md:mb-6">
                         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: "spring" }} className="inline-block bg-green-100 text-green-700 font-bold px-3 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-sm mb-2 md:mb-3 border border-green-200">Passed Successfully</motion.div>
                         <h4 className="text-slate-900 font-extrabold text-lg md:text-xl tracking-tight leading-tight">{rollNumber || "DNC2026001"}</h4>
                         <p className="text-xs md:text-sm text-slate-500 font-semibold">B.Sc Nursing - Semester 2</p>
                         </div>
                         <div className="space-y-3 mb-6 md:mb-8 text-xs md:text-base">
-                        <div className="flex justify-between items-center border-b border-slate-100 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Anatomy</span><span className="font-bold text-slate-900">85<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
-                        <div className="flex justify-between items-center border-b border-slate-100 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Physiology</span><span className="font-bold text-slate-900">78<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
-                        <div className="flex justify-between items-center border-b border-slate-100 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Nutrition</span><span className="font-bold text-slate-900">92<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
+                        <div className="flex justify-between items-center border-b border-slate-200 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Anatomy</span><span className="font-bold text-slate-900">85<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
+                        <div className="flex justify-between items-center border-b border-slate-200 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Physiology</span><span className="font-bold text-slate-900">78<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
+                        <div className="flex justify-between items-center border-b border-slate-200 pb-2 md:pb-3"><span className="text-slate-600 font-semibold">Nutrition</span><span className="font-bold text-slate-900">92<span className="text-slate-400 font-normal text-[10px] md:text-xs">/100</span></span></div>
                         </div>
-                        <button onClick={() => setShowResult(false)} className="w-full bg-slate-100 border border-slate-200 text-slate-700 font-bold py-3 md:py-3.5 rounded-xl hover:bg-slate-200 transition-colors text-sm md:text-base">
+                        <button onClick={() => setShowResult(false)} className="w-full bg-white border border-slate-300 text-slate-700 font-bold py-3 md:py-3.5 rounded-xl hover:bg-slate-100 transition-colors text-sm md:text-base">
                         Check Another
                         </button>
                     </motion.div>
@@ -535,14 +587,38 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
       </section>
 
       {/* --- Footer --- */}
-      <footer className="bg-slate-900 text-slate-400 pt-16 pb-8 relative z-20">
+      <footer className="bg-slate-900 text-slate-400 pt-16 md:pt-20 pb-8 md:pb-10 relative z-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12">
-            <div className="space-y-3"><div className="flex items-center gap-2.5 text-xl font-black text-white leading-none"><img src="/image_3.png" alt="logo" className="h-6 w-auto" /> Divine Nursing</div><p className="text-sm">Dedicated to excellence in nursing education in Jharkhand.</p></div>
-            <div><h4 className="text-white font-bold mb-4">Quick Links</h4><ul className="space-y-3 text-sm"><li><a href="#apply" className="hover:text-blue-400 transition-colors">Admissions Portal</a></li><li><a href="/gallery" className="hover:text-blue-400 transition-colors">Gallery</a></li></ul></div>
-            <div><h4 className="text-white font-bold mb-4">Contact</h4><p className="text-sm flex gap-3"><MapPin className="text-blue-500 shrink-0" /> Ranchi, Jharkhand 834006</p></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12 md:mb-16">
+            <div className="space-y-3 md:space-y-4">
+              <div className="flex items-center gap-2.5 text-xl md:text-2xl font-black text-white leading-none">
+                <div className="bg-white rounded-full p-1"><img src="/image_3.png" alt="Divine Nursing College Logo" className="h-6 md:h-8 w-auto" /></div> Divine Nursing
+              </div>
+              <p className="text-slate-400 mb-6 leading-relaxed font-medium text-sm md:text-base">Dedicated to excellence in nursing education, practice, and research to improve health outcomes in Jharkhand.</p>
+            </div>
+            <div>
+              <h4 className="text-white font-bold text-base md:text-lg mb-4 md:mb-6 leading-tight">Quick Links</h4>
+              <ul className="space-y-3 font-semibold text-sm md:text-base">
+                <li><a href="#apply" className="hover:text-blue-400 transition-colors py-1 inline-block">Admissions Portal</a></li>
+                <li><a href="#courses" className="hover:text-blue-400 transition-colors py-1 inline-block">Program Details</a></li>
+                <li><a href="#affiliations" className="hover:text-blue-400 transition-colors py-1 inline-block">Affiliations</a></li>
+                <li><a href="/gallery" className="hover:text-blue-400 transition-colors py-1 inline-block">Gallery</a></li>
+              </ul>
+            </div>
+            <div className="space-y-6 md:space-y-8">
+              <div>
+                <h4 className="text-white font-bold text-base md:text-lg mb-4 md:mb-6 leading-tight">Contact Us</h4>
+                <ul className="space-y-4 font-semibold text-sm md:text-base">
+                  <li className="flex items-start gap-3"><MapPin className="text-blue-500 h-4 w-4 md:h-5 md:w-5 shrink-0 mt-0.5" /><span>Veterinary road, near Kanke Block Chowk Road, <br/>Patratoli, Ranchi, Arsande, Jharkhand 834006</span></li>
+                  <li className="flex items-center gap-3"><Phone className="text-blue-500 h-4 w-4 md:h-5 md:w-5 shrink-0" /><span>+91-7979826078, +91-9304504465</span></li>
+                  <li className="flex items-center gap-3"><Mail className="text-blue-500 h-4 w-4 md:h-5 md:w-5 shrink-0" /><span className="lowercase hover:text-blue-400"><a href="mailto:info@divinenursing.com">info@divinenursing.com</a></span></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div className="border-t border-slate-800 pt-6 text-center text-[10px] font-semibold"><p>&copy; {new Date().getFullYear()} Divine Nursing College Ranchi.</p></div>
+          <div className="border-t border-slate-800 pt-6 md:pt-8 text-center text-[10px] md:text-xs text-slate-500 flex flex-col md:flex-row justify-between items-center gap-4 font-semibold">
+            <p>&copy; {new Date().getFullYear()} Divine Nursing College Ranchi.</p>
+          </div>
         </div>
       </footer>
     </div>
