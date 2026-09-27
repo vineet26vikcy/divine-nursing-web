@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, GraduationCap, Activity, Bell, MapPin, Mail, Phone, ArrowRight, ChevronRight, Trophy, ChevronDown, Menu, X, MessageCircle, Image as ImageIcon, ArrowUpRight, Quote } from "lucide-react";
 
@@ -286,6 +287,34 @@ export default function ClientHome({ labImages = [], galleryImages = [] }: any) 
               ))}
             </motion.div>
           </a>
+        </div>
+      </section>
+
+      {/* --- PRINCIPAL'S MESSAGE SECTION --- */}
+      <section className="relative py-10 md:py-24 bg-slate-50 overflow-hidden border-b border-slate-200 z-20">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp} className="bg-white rounded-3xl md:rounded-[3rem] p-6 md:p-12 lg:p-16 shadow-xl border border-slate-200 relative overflow-hidden flex flex-col md:flex-row items-start md:items-stretch gap-8">
+            <div className="absolute top-0 left-0 w-48 h-48 md:w-64 md:h-64 bg-blue-50 rounded-full blur-3xl -translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
+            <div className="w-full md:w-2/3 relative z-10 flex flex-col justify-center">
+              <Quote className="h-10 w-10 md:h-12 lg:h-16 md:w-12 lg:w-16 text-blue-200 mb-4 md:mb-6" />
+              <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-4 md:mb-6 tracking-tight">Message from the Principal</h2>
+              <div className="space-y-3 md:space-y-4 text-slate-700 font-medium text-sm md:text-lg leading-relaxed">
+                <p>Nursing is more than a profession. It is a commitment to knowledge, skill, compassion, and service. At Divine Nursing College, we strive to create an environment where students learn with purpose, grow with confidence, and develop the values essential to becoming responsible healthcare professionals.</p>
+                
+              </div>
+              <div className="mt-6 md:mt-8 pt-6 border-t border-slate-100">
+                <h4 className="text-xl md:text-2xl font-black text-slate-900">Dr. Theyamma P.T.</h4>
+                <p className="text-sm md:text-base italic text-slate-600 mt-1">Ex-Registrar, Jharkhand Nurses Registration Council (JNRC)</p>
+                <p className="text-sm md:text-base italic text-slate-600 mt-1">Ex-Principal, RIMS School of Nursing</p>
+              </div>
+            </div>
+            <div className="w-full md:w-1/3 flex justify-end items-end relative z-10">
+              <div className="relative inline-block">
+                <div className="absolute inset-0 bg-blue-600 rounded-full blur-xl opacity-20 translate-y-4"></div>
+                <Image src="/prin.png" alt="Dr. Theyamma P.T. - Principal" width={288} height={288} className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-full object-cover border-4 md:border-8 border-white shadow-2xl z-10" />
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
